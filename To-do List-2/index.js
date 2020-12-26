@@ -96,7 +96,7 @@ function moveUp(event){
 function moveDown(event){
     const downIndex = parseInt(event.target.parentElement.getAtrribute('item-id'));
 
-    if(index !== item.length){
+    if(index !== item.length - 1){
     swap(downIndex, downIndex + 1);
     printItem();
   }
