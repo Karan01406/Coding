@@ -4,8 +4,12 @@ const btnAddItem = document.getElementById("btnAddItem");
 
 btnAddItem.addEventListener("click", addItemToArray)
 
-let item = [];
-console.log(item);
+let item = JSON.parse(localStorage.getItem("itemlist"));
+if (item === null ){
+    item = [];
+}
+printItem();
+
 function addItemToArray(){
     if(addItem.value === ""){
         return;
@@ -22,9 +26,10 @@ function addItemToArray(){
 }
 
 function printItem(){
+    localStorage.setItem("itemlist", JSON.stringify(item));
     list.innerHTML = "";
     for(let i = 0; i <item.length; i++){
-        addItemToList(item[i]);
+        addItemToList(item[i], i);
     }
     addItem.value = "";
 }
@@ -32,16 +37,20 @@ function printItem(){
 function addItemToList(newTodo, itemId){
     const li = document.createElement("li");
     li.setAttribute("item-id", itemId);
+    li.classList.add("list-group-item");
+
     const span = document.createElement("span");
     span.innerText = newTodo.task;
-
+    
      const checkbox = document.createElement("input");
+     document.getElementById("checkbox");
      checkbox.setAttribute('type','checkbox');
      checkbox.onclick = appendCheckbox;
 
     const dltBtn = document.createElement('button');
     dltBtn.innerText = 'X';
     dltBtn.onclick = deleteItem;
+    dltBtn.classList.add("btn-btn-secondary");
 
     const upBtn = document.createElement('button');
     upBtn.innerText = "^";
@@ -58,16 +67,26 @@ function addItemToList(newTodo, itemId){
     }
  
     li.appendChild(span);
-    li .appendChild(checkbox);
+    li .appendChild(checkbox); 
     li.appendChild(dltBtn);
-    li.appendChild(upBtn);
-    li.appendChild(downBtn);
+    
+    if (itemId !== 0){
+        li.appendChild(upBtn);
+    }
+
+    if (itemId !== item.length - 1){
+        li.appendChild(downBtn);
+    }
+    
     list.appendChild(li);
+    
 }
 
 
 function appendCheckbox(event) {
     const index = parseInt(event.target.parentElement.getAttribute('item-id'));
+    console.log(item);
+    console.log(index);
     item[index].done = !item[index].done;
     printItem();
 }
@@ -85,18 +104,18 @@ function deleteItem(event) {
 }
 
 function moveUp(event){
-    const upIndex = parseInt(event.target.parentElement.getAtrribute('item-id'));
+    const upIndex = parseInt(event.target.parentElement.getAttribute('item-id'));
 
-    if(index !== 0){
+    if(upIndex !== 0){
     swap(upIndex, upIndex - 1);
     printItem();
   }
 }
 
 function moveDown(event){
-    const downIndex = parseInt(event.target.parentElement.getAtrribute('item-id'));
+    const downIndex = parseInt(event.target.parentElement.getAttribute('item-id'));
 
-    if(index !== item.length - 1){
+    if(downIndex !== item.length - 1){
     swap(downIndex, downIndex + 1);
     printItem();
   }
