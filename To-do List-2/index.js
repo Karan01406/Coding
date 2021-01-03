@@ -41,24 +41,34 @@ function addItemToList(newTodo, itemId){
 
     const span = document.createElement("span");
     span.innerText = newTodo.task;
-    
+    span.className = "col-2";
+
      const checkbox = document.createElement("input");
      document.getElementById("checkbox");
      checkbox.setAttribute('type','checkbox');
-     checkbox.onclick = appendCheckbox;
+     checkbox.className = "col-1";
+     checkbox.onchange = appendCheckbox;
 
-    const dltBtn = document.createElement('button');
-    dltBtn.innerText = 'X';
-    dltBtn.onclick = deleteItem;
-    dltBtn.classList.add("btn-btn-secondary");
+     const dltIcon = document.createElement("i");
+     dltIcon.className = 'fa fa-minus-circle';
+     const dltBtn = document.createElement('button');
+     dltBtn.className = "btn btn-danger col-1";
+     dltBtn.appendChild(dltIcon);
+     dltBtn.onclick = deleteItem;
 
-    const upBtn = document.createElement('button');
-    upBtn.innerText = "^";
-    upBtn.onclick = moveUp;
+     const upIcon = document.createElement("i");
+     upIcon.className = 'fa fa-chevron-up';
+     const upBtn = document.createElement('button');
+     upBtn.className = " btn btn-dark col-1";
+     upBtn.appendChild(upIcon);
+     upBtn.onclick = moveUp;
 
-    const downBtn = document.createElement('button');
-    downBtn.innerText = "v";
-    downBtn.onclick = moveDown;
+     const downIcon = document.createElement("i");
+     downIcon.className = 'fa fa-chevron-down';
+     const downBtn = document.createElement('button');
+     downBtn.className = "btn btn-dark col-1";
+     downBtn.appendChild(downIcon);
+     downBtn.onclick = moveDown;
 
     if (newTodo.done){
         checkbox.setAttribute("checked", true);
@@ -66,20 +76,16 @@ function addItemToList(newTodo, itemId){
         span.style.color = "green";
     }
  
-    li.appendChild(span);
     li .appendChild(checkbox); 
+    li.appendChild(span);
     li.appendChild(dltBtn);
-    
     if (itemId !== 0){
         li.appendChild(upBtn);
     }
-
     if (itemId !== item.length - 1){
         li.appendChild(downBtn);
     }
-    
-    list.appendChild(li);
-    
+    list.appendChild(li);   
 }
 
 
@@ -92,7 +98,10 @@ function appendCheckbox(event) {
 }
 
 function deleteItem(event) {
-    const deleteIndex = parseInt(event.target.parentElement.getAttribute('item-id'));
+    let deleteIndex = parseInt(event.target.parentElement.getAttribute('item-id'));
+    if(Number.isNaN(deleteIndex)){
+        deleteIndex = parseInt(event.target.parentElement.parentElement.getAttribute("item-id"));
+    }
     const newItem = [];
     for(let i=0 ; i<item.length ; i++) {
         if(i !== deleteIndex) {
@@ -104,8 +113,10 @@ function deleteItem(event) {
 }
 
 function moveUp(event){
-    const upIndex = parseInt(event.target.parentElement.getAttribute('item-id'));
-
+    let upIndex = parseInt(event.target.parentElement.getAttribute('item-id'));
+    if(Number.isNaN(upIndex)){
+        upIndex = parseInt(event.target.parentElement.parentElement.getAttribute("item-id"));
+    }
     if(upIndex !== 0){
     swap(upIndex, upIndex - 1);
     printItem();
@@ -113,8 +124,10 @@ function moveUp(event){
 }
 
 function moveDown(event){
-    const downIndex = parseInt(event.target.parentElement.getAttribute('item-id'));
-
+    let downIndex = parseInt(event.target.parentElement.getAttribute('item-id'));
+    if(Number.isNaN(downIndex)){
+        downIndex = parseInt(event.target.parentElement.parentElement.getAttribute("item-id"));
+    }
     if(downIndex !== item.length - 1){
     swap(downIndex, downIndex + 1);
     printItem();
