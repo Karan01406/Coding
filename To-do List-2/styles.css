@@ -1,25 +1,10 @@
-.list-group-item{
+list-group-item{
 font-size: 20px;
-width: 750px;
-text-align: center;
-margin-left: 23%;
-color: red;
-background-color: aqua;
+color:red;
 }
 
-.input-group{
-    width: 300px;
-    
+h1{
+    text-align: center;
 }
 
-#btnAddItem{
-    height: 40px;
-}
 
-.align{
-    display: inline-block;
-}
-
-.card mb-3{
-width: 600px;
-}
