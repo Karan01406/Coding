@@ -1,0 +1,21 @@
+*{
+    background-color: black;
+}
+
+#inputbox{
+    height: 40px;
+    width: 400px;
+    border: 2px solid white;
+    border-radius: 10px;
+    color: white;
+}
+
+.fa-heart-circle{
+    color:#212529;    
+    background-color: yellow;
+}
+
+.pic{
+    height: 450px;
+}
+
