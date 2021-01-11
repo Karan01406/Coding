@@ -52,7 +52,7 @@ function addItemToList(newTodo, itemId){
      const dltIcon = document.createElement("i");
      dltIcon.className = 'fa fa-minus-circle';
      const dltBtn = document.createElement('button');
-     dltBtn.className = "btn btn-danger col-1";
+     dltBtn.className = "btn btn-danger";
      dltBtn.appendChild(dltIcon);
      dltBtn.onclick = deleteItem;
 
