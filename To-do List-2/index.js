@@ -59,14 +59,14 @@ function addItemToList(newTodo, itemId){
      const upIcon = document.createElement("i");
      upIcon.className = 'fa fa-chevron-up';
      const upBtn = document.createElement('button');
-     upBtn.className = " btn btn-dark col-1";
+     upBtn.className = " btn btn-light col-1";
      upBtn.appendChild(upIcon);
      upBtn.onclick = moveUp;
 
      const downIcon = document.createElement("i");
      downIcon.className = 'fa fa-chevron-down';
      const downBtn = document.createElement('button');
-     downBtn.className = "btn btn-dark col-1";
+     downBtn.className = "btn btn-light col-1";
      downBtn.appendChild(downIcon);
      downBtn.onclick = moveDown;
 
