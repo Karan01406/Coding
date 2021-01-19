@@ -34,5 +34,8 @@ function createChat() {
       else if(question === "yaar"){
        answer = "https://www.canva.com/design/DAES_wr5VvM/p5tMsBLReGqkMdFJ4fmKyQ/watch?utm_content=DAES_wr5VvM&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink"
       }
+      else if(question === "Thank-you-for-saying-yes"){
+      answer = "https://www.canva.com/design/DAETl1oL2aY/L41Hk71CVxYKxJ7LG-3_Rg/watch?utm_content=DAETl1oL2aY&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink";
+    }
     return answer;
 }
